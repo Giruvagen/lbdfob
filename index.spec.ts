@@ -3,22 +3,22 @@ import Trie from './index'
 const acronyms: Array<string> = require('./three_letter_acronyms.json')
 
 describe('Trie tests', () => {
-    describe('Trie insert items tests', () => {
-        it('when given a single entry with one character has one node with that character', () => {
-            const trie = new Trie();
-            trie.insert('A')
-            expect(trie.contains('A')).toBeTruthy()
-        })
-
-        it('when given a 1000 entries contains a random word', () => {
-        const trie = new Trie();
-        trie.insertWords(acronyms)
-        const randomEntry = acronyms.at(Math.floor(Math.random() * 1000)) || ' '
-        expect(trie.contains(randomEntry)).toBeTruthy()
-        })
-
+  describe('Trie insert items tests', () => {
+    it('when given a single entry with one character has one node with that character', () => {
+      const trie = new Trie();
+      trie.insert('A')
+      expect(trie.contains('A')).toBeTruthy()
     })
-  describe('Trie find tests', () => { 
+
+    it('when given a 1000 entries contains a random word', () => {
+      const trie = new Trie();
+      trie.insertWords(acronyms)
+      const randomEntry = acronyms.at(Math.floor(Math.random() * 1000)) || ' '
+      expect(trie.contains(randomEntry)).toBeTruthy()
+    })
+
+  })
+  describe('Trie find tests', () => {
     it('When contains a the word test and search for test, test is found', () => {
       const trie = new Trie();
       trie.insert('test')

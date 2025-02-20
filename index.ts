@@ -3,8 +3,8 @@ class TrieNode {
   isEndOfWord: boolean;
 
   constructor() {
-  this.children = new Map<string, TrieNode>();
-  this.isEndOfWord = false;
+    this.children = new Map<string, TrieNode>();
+    this.isEndOfWord = false;
   }
 }
 
@@ -12,18 +12,18 @@ export default class Trie {
   root: TrieNode;
 
   constructor() {
-  this.root = new TrieNode();
+    this.root = new TrieNode();
   }
 
   insert(word: string): void {
-  let current = this.root;
-  for (const char of word) {
-    if (!current.children.has(char.toLocaleLowerCase())) {
-    current.children.set(char.toLocaleLowerCase(), new TrieNode());
+    let current = this.root;
+    for (const char of word) {
+      if (!current.children.has(char.toLocaleLowerCase())) {
+        current.children.set(char.toLocaleLowerCase(), new TrieNode());
+      }
+      current = current.children.get(char.toLocaleLowerCase())!;
     }
-    current = current.children.get(char.toLocaleLowerCase())!;
-  }
-  current.isEndOfWord = true;
+    current.isEndOfWord = true;
   }
 
   insertWords(words: Array<string>): void {
@@ -31,28 +31,28 @@ export default class Trie {
   }
 
   contains(word: string): boolean {
-  let current = this.root;
-  for (const char of word) {
-    if (!current.children.has(char.toLocaleLowerCase())) {
-    return false;
+    let current = this.root;
+    for (const char of word) {
+      if (!current.children.has(char.toLocaleLowerCase())) {
+        return false;
+      }
+      current = current.children.get(char.toLocaleLowerCase())!;
     }
-    current = current.children.get(char.toLocaleLowerCase())!;
-  }
-  return current.isEndOfWord;
+    return current.isEndOfWord;
   }
 
   startsWith(prefix: string): boolean {
-  let current = this.root;
-  for (const char of prefix) {
-    if (!current.children.has(char.toLocaleLowerCase())) {
-    return false;
+    let current = this.root;
+    for (const char of prefix) {
+      if (!current.children.has(char.toLocaleLowerCase())) {
+        return false;
+      }
+      current = current.children.get(char.toLocaleLowerCase())!;
     }
-    current = current.children.get(char.toLocaleLowerCase())!;
+    return true;
   }
-  return true;
-  }
-  
-    getWordsWithPrefix(prefix: string): string[] {
+
+  getWordsWithPrefix(prefix: string): string[] {
     const words: string[] = [];
     let current = this.root;
 
@@ -63,17 +63,17 @@ export default class Trie {
       current = current.children.get(char.toLocaleLowerCase())!;
     }
 
-    const dfs = (node: TrieNode, path: string) => {
-      if (node.isEndOfWord) {
-        words.push(path);
-      }
-
-      for (const [char, childNode] of node.children) {
-        dfs(childNode, path + char.toLocaleLowerCase());
-      }
-    };
-
-    dfs(current, prefix);
+    this.depthFirstSearch(current, prefix, words);
     return words;
   }
+
+  private depthFirstSearch = (node: TrieNode, path: string, words: string[]) => {
+    if (node.isEndOfWord) {
+      words.push(path);
+    }
+
+    for (const [char, childNode] of node.children) {
+      this.depthFirstSearch(childNode, path + char.toLocaleLowerCase(), words);
+    }
+  };
 }
