@@ -1,4 +1,5 @@
 import Trie from './index'
+import { performance } from 'perf_hooks'
 
 const acronyms: Array<string> = require('./three_letter_acronyms.json')
 
@@ -57,4 +58,44 @@ describe('Trie tests', () => {
       expect(trie.getWordsWithPrefix('B').length).toBe(trie.getWordsWithPrefix('b').length)
     })
   })
+
+  describe('Performance tests', () => {
+    it('When searching 1000 entries returns answers within 1ms', () => {
+      const trie = new Trie();
+      trie.insertWords(acronyms)
+      const start = performance.now()
+      const result = trie.getWordsWithPrefix('A')
+      const end = performance.now()
+      console.log(`Start was ${start} and end was ${end}`)
+      expect(result).toBeDefined()
+      expect(end - start).toBeLessThan(1)
+    })
+  })
+  describe('Performance tests', () => {
+    it('When searching 1 million entries returns answers within 200ms', () => {
+      const trie = new Trie();
+      const bigList = generateRandomStringsList(1000000, 10);
+      trie.insertWords(bigList)
+      const start = performance.now()
+      const result = trie.getWordsWithPrefix('A')
+      const end = performance.now()
+      console.log(`Start was ${start} and end was ${end}`)
+      expect(result).toBeDefined()
+      expect(end - start).toBeLessThan(200)
+    })
+  })
 })
+
+const generateRandomString = (length: number): string => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+const generateRandomStringsList = (count: number, length: number): string[] => {
+  return Array.from({ length: count }, () => generateRandomString(length));
+}
+
