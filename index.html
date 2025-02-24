@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Type-ahead example</title>
+    </head>
+    <body>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                background-color: #f7f9fc;
+                color: #333;
+            }
+
+            ul {
+                max-width: 300px;
+                padding: 10px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                list-style: none;
+            }
+
+            li {
+                padding: 8px 12px;
+                border-bottom: 1px solid #eee;
+            }
+
+            li:last-child {
+                border-bottom: none;
+            }
+
+            li:hover {
+                background-color: #f0f4f8;
+                cursor: pointer;
+            }
+        </style>
+        <form>
+            <label for="textinpit">Enter your prefix:</label><br>
+            <input type="text" id="textinput" name="texinput" maxlength="12" placeholder="Enter your prefix" required>
+            <ul id="founditems"></ul>
+        </form>
+        <script>class ThingNode{constructor(){this.children=new Map,this.isEndOfWord=!1}}class Thing{constructor(){this.depthFirstSearch=(C,H,T)=>{for(let[P,O]of(C.isEndOfWord&&T.push(H),C.children))this.depthFirstSearch(O,H+P.toLocaleLowerCase(),T)},this.root=new ThingNode}insert(C){let H=this.root;for(let T of C)H.children.has(T.toLocaleLowerCase())||H.children.set(T.toLocaleLowerCase(),new ThingNode),H=H.children.get(T.toLocaleLowerCase());H.isEndOfWord=!0}insertWords(C){C.forEach(C=>this.insert(C))}contains(C){let H=this.root;for(let T of C){if(!H.children.has(T.toLocaleLowerCase()))return!1;H=H.children.get(T.toLocaleLowerCase())}return H.isEndOfWord}startsWith(C){let H=this.root;for(let T of C){if(!H.children.has(T.toLocaleLowerCase()))return!1;H=H.children.get(T.toLocaleLowerCase())}return!0}getWordsWithPrefix(C){let H=[],T=this.root;for(let P of C){if(!T.children.has(P.toLocaleLowerCase()))return H;T=T.children.get(P.toLocaleLowerCase())}return this.depthFirstSearch(T,C,H),H}}var thing=new Thing,words=["ADL","VHA","YMS","ONH","JHQ","XAF","QRO","QPF","LRP","TZP","DAX","WFN","KRK","KVS","EEH","JQL","PCG","NGR","PAZ","PGQ","OWW","JQW","TBA","SPZ","MYL","ULV","SWP","JPM","MNQ","UDS","QOV","VGG","AJF","EVS","HYP","OMJ","UJU","DGS","ZTC","VPL","LWT","KVD","IEZ","BAX","ORL","RSN","KYY","LQO","KOE","PCT","ZWE","OIU","AMJ","WOS","AHK","HKD","RKW","CBB","HFV","CGC","TDS","OXF","LBT","OCN","JMW","HKG","FYF","AAC","MSG","WBV","FGC","AVX","TGF","SSS","KHU","USU","CVM","AJJ","ODK","JEZ","VAB","NEN","KDB","RCM","IHX","OTC","ZQF","CNJ","EAA","JGE","WBK","OWZ","BXH","DCP","HZC","SQU","QTV","PAK","SBT","WAN","RWV","FLV","NQT","EJF","VAD","GIP","NGF","PMF","AQM","JFW","EZQ","MZX","UJL","ASW","CSA","QXP","JCM","AKP","TJT","SDT","FRH","YYY","APR","XNN","OXJ","FKV","UOU","RED","UUY","ZRR","BZA","YXE","YTN","PFR","OAK","CCU","TWV","HGJ","YSG","GMD","UGQ","FEU","ASG","SMJ","ONT","VOS","YLP","TWC","IAU","KCN","BCV","OER","CJP","ZSY","SOE","BSE","QPW","NAU","DPG","CJW","ZWB","ZFI","AVS","EHP","JHE","MMG","HMM","CBE","NDH","QWM","TGE","XPM","OJP","MMR","HSR","WFZ","HYS","PAH","RSG","LYZ","TPB","WKG","WQD","YEP","GOU","UNW","SWN","KHT","ANR","KGH","PLA","OPL","QEJ","GBF","SHV","CFY","BAY","SYT","XRP","FLC","UBD","GHB","ALJ","TQC","JKB","DXN","SNH","NPL","EIH","AOY","GLM","IQE","EXF","BPY","DLF","YSO","XFW","NCM","UEW","CUN","KDT","NLB","PDS","AWD","DMN","YCX","EGD","ZEL","XGR","ZUC","ZSD","ABA","RVJ","WEH","MBS","UUC","ZLP","RHA","ALG","ABB","WBM","RAB","SVP","JFK","JVS","HHI","VKB","PHB","BXN","CJF","GIQ","DEH","FFE","ZHV","SBZ","UXQ","MFX","WET","NQU","MOQ","FJL","DCG","CCG","UJK","BBC","APN","VTA","QVN","IEF","UUE","KWG","FFQ","AJT","KSX","RON","SRG","ZWL","TQE","UNS","ZGF","YGT","TSI","IOV","HQN","XUK","VPW","QKV","ZAT","DLW","XGA","FZU","GHP","NMN","KMU","DPM","SLN","DFG","MUK","MSZ","WPK","LZL","THF","FII","WJQ","HVN","LPI","ZTO","ZYL","JMV","OXR","ZFH","UNJ","SZX","RNP","IQZ","JJT","WTD","WTR","CMH","XAR","YUP","WUS","THN","FVX","PEA","NOU","FKH","AUM","BHN","TJH","BDJ","RMI","MRY","YDV","HSM","KXH","GYP","XSH","ELQ","MNY","BJE","COP","TPP","GNF","DLH","ZNA","JAH","DER","RCJ","BFL","OKE","YTU","HTN","KYH","KMH","UQQ","YXL","VHP","MLI","AWT","VZN","BOA","DMH","QLV","QII","AED","AWP","NPB","CSH","HYA","GXP","IWM","IAX","RRM","HQE","JPC","WRE","XMS","RIE","TVU","COL","FXX","KBO","VMO","HTV","TCB","NFH","OBT","YPV","DYP","QBM","UGE","DNW","RPC","IGA","ITW","SCA","UZX","IKO","POL","UHR","XLH","NXF","PIO","GSH","PPC","DDQ","XSP","FKN","POF","BJI","CAH","VUU","TTV","FMO","KBW","KST","ENC","YVX","GNJ","EJX","UYO","AGU","BMK","FDG","XXU","JSS","XFY","NQB","WXY","GSC","REA","AET","LBN","XGX","GMG","TJU","KUC","SWI","KPN","FSZ","NET","AKV","NRN","NOW","QRB","TTJ","UBH","ILM","FKF","AVL","UTC","OVJ","JII","WEN","BJU","GON","KUR","PTZ","YFW","ADN","OEJ","QSC","JIO","UTQ","OZH","YTK","YBS","WTT","MJB","NHC","IWJ","LIT","RDT","LGB","OKS","BTA","OPU","QQP","TPI","LWS","PFE","SAU","SOK","OYQ","LUX","PYN","QTJ","HQH","CKT","NHT","OTB","SLU","MOK","EIU","MZJ","EIQ","ZXB","HDF","SLT","ROC","HCT","DDX","QEP","DLS","ODS","MJJ","ZZF","AZH","JYW","ORD","GNO","HFY","NOD","KPS","GXR","CBG","VML","QMI","SUV","EUR","HQQ","TTA","YHP","YMF","IRU","SRQ","JQH","BBY","NVW","CGY","QVA","KMC","FUE","SOM","XVI","KFG","CXG","FZP","JRK","RPL","UHG","ELN","ICV","UUJ","QDW","SFH","ZXW","GZJ","CLF","CNG","GGY","JJU","NGH","AEX","WVB","ZPK","TEL","XHT","QGL","AAN","CIK","BNM","GUO","CQZ","MHL","ZZH","FFI","QHV","VCP","YBP","CUM","EKD","FTV","GVE","BLW","VAH","OWE","BEO","CXZ","NXC","FQU","ALV","HIO","WPV","FQN","PQA","ROS","FTU","THT","TBP","VKC","SGJ","UCK","AXG","IIA","WQF","HGB","GKZ","YMP","MCL","PYK","ZJT","HAQ","XON","MOJ","HJW","JRS","SXV","EGU","HOO","DKU","KAD","VPK","ZOJ","OLE","BTF","BIG","LEJ","RVP","QOQ","QIZ","MXX","WGC","KJO","IFS","ZHO","FCQ","FMY","SEI","BMH","AUH","ZJJ","JLK","VPI","WID","IZI","IVS","OMF","RZC","EXB","JAC","NZJ","CUQ","DHF","WBG","CJU","RVS","OOS","UAV","NZG","VNU","WVJ","SHJ","FKC","EXD","LWG","BEH","DZY","RCE","XBQ","DAI","NMP","CBQ","FLG","HQZ","JYC","AJI","WGR","YMY","OJH","ZDJ","OBM","CXS","CVC","LEN","LVQ","EIA","DIY","UQX","PVH","SBG","UVA","XOO","YKD","XHJ","GOE","GWM","MTW","ZNI","SOH","ODI","CES","QMC","EIX","OSO","WZU","AXJ","DEP","TQQ","KTF","TII","XTX","AXI","SPX","PMP","KZO","PBI","KNE","IJR","ETA","RVY","LOF","EWO","EYJ","PFG","EJU","ICQ","SKE","WFP","CRR","TSU","YOT","DSD","XMC","ZOK","CRF","FQH","AHX","QVD","EWC","VZD","UTX","QKO","HVQ","VGE","UPN","TXZ","QJW","FDN","OIL","YJL","RVV","HXF","YDX","LBM","UOL","ZFN","XLM","QGG","VFA","DBN","PPW","RZR","HSI","CJN","IXB","MPP","ZCN","ZVQ","CED","VVQ","QUQ","FUI","MPE","HSO","LYM","NQA","TWF","LIH","HNW","TFM","MAM","BJH","LHE","JPB","XKI","KKH","JTX","UML","FRF","TTD","AJU","FJC","RXO","KGN","HQA","KNZ","HQB","AAJ","BIX","SEN","GGI","BNV","USD","KTQ","YFM","LIN","XVU","VXL","NEM","WAC","ZRB","GEM","UPA","IUN","DWB","RVH","ETO","ERN","HZF","WEJ","OYX","ZPS","UUQ","AFU","HIY","WPR","CVN","GXG","IWO","EAR","TOK","WWY","CWF","ILH","MAI","TOT","TPQ","SRS","PWY","JIZ","AOI","TYK","HXW","UHX","VCY","VIT","EXA","WXR","HLQ","YCK","URO","BQV","BAD","OCG","VUO","KGD","ONU","PZB","CVH","ZLN","TNT","OLD","UOJ","RMT","DCF","UWQ","HMN","QOB","SSK","ZIJ","IGV","RUG","EAO","KAI","YPJ","GFZ","TLB","IDJ","AEC","BOY","XYP","XLT","YKT","VDC","WGP","JZT","LQL","QDA","HTQ","LMG","MKN","ESP","OQQ","WRC","FXU","IJD","CRK","HNT","ISK","MYE","OHH","ZFW","UQR","AIC","GDV","ABR","ZEF","TXT","IYI","TYI","SIV","SFD","GQB","NTZ","LCL","BMP","VAO","TZC","OZO","PAB","FPD","PHT","FVM","CVU","CPA","VTX","QCJ","EPA","CAT","VAC","GWX","ZCG","UDJ","SWH","MTN","HGG","HMI","HNS","JVJ","IBS","FIL","XZT","ZRE","BRG","PQW","LRU","VEZ","QUO","CRS","JPD","BYL","RTS","UID","NYY","RCC","GYM","RKD","ZUZ","NSK","YCG","BTU","GLC","JPX","TIB","RQW","VQS","XIB","GNW","MEV","MGO","CWZ","OLT","WXN","EYW","LRX","KSQ","UJD","BCY","HZU","NSY","NSM","KXX","OIB","QYV","DNV","JCA","WBX","XQL","BTG","QHP","UJQ","UYQ","EDW","ZLA","PGZ","QLS","KGF","CHA","VDH","MTC","EOW","LZG","QMV","UQY","EQT","RXK","PZL","PPB"];thing.insertWords(words),console.log(words);var sourceInput=document.getElementById("textinput"),ul=document.getElementById("founditems");sourceInput.addEventListener("input",function(){ul.innerHTML="",thing.getWordsWithPrefix(this.value).forEach(C=>{let H=document.createElement("li");H.textContent=C,ul.appendChild(H)})});
+            </script>
+    </body>
+</html>

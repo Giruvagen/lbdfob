@@ -41,7 +41,7 @@ describe('Trie tests', () => {
       trie.insert('test')
       expect(trie.getWordsWithPrefix('te')).toStrictEqual(['test'])
     })
-    it('When contains a the word test and search words with the prefix fal, nothing is found', () => {
+    it('When list contains the word test and you search prefix fal, nothing is found', () => {
       const trie = new Trie();
       trie.insert('test')
       expect(trie.getWordsWithPrefix('fal')).toStrictEqual([])
@@ -50,6 +50,11 @@ describe('Trie tests', () => {
       const trie = new Trie();
       trie.insertWords(acronyms)
       expect(trie.getWordsWithPrefix('A').length).toBe(48)
+    })
+    it('When two words have the same prefix, returns both words', () => {
+      const trie = new Trie();
+      trie.insertWords(['beats', 'bears'])
+      expect(trie.getWordsWithPrefix('bea')).toEqual(['beats', 'bears'])
     })
     it('When searching, case is ignored', () => {
       const trie = new Trie();
